@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+.venv/
+venv/
+
+# Data (large files — not tracked in git)
+*.jsonl
+*.gguf
+*.safetensors
+*.bin
+*.pt
+*.pth
+checkpoints/
+output/
+
+# Cook artifacts
+/tmp/swarmsignal_cook/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local

@@ -1,0 +1,70 @@
+[
+  {
+    "id": "briefing_01",
+    "format": "BRIEFING",
+    "prompt": "BRIEFING: Write a daily intelligence briefing covering: 1) NVIDIA announcing new Blackwell Ultra GPUs with 288GB HBM3e, 2) OpenAI reportedly in talks for $40B funding round at $340B valuation, 3) Meta releasing Llama 4 Scout and Maverick models, 4) Anthropic launching Claude 4 model family, 5) The growing trend of sovereign AI compute buildouts globally",
+    "expect": {
+      "min_length": 600,
+      "must_contain": ["sentiment", "trend"],
+      "no_corporate_speak": true
+    }
+  },
+  {
+    "id": "culture_01",
+    "format": "CULTURE_REPORT",
+    "prompt": "CULTURE_REPORT: What is the AI dev community actually talking about this week? Cover the discourse around open-weight models vs closed APIs, the Mamba/SSM architecture hype, and the growing frustration with GPU pricing.",
+    "expect": {
+      "min_length": 500,
+      "must_contain": ["community", "discourse"],
+      "no_corporate_speak": true
+    }
+  },
+  {
+    "id": "trend_01",
+    "format": "TREND_ANALYSIS",
+    "prompt": "TREND_ANALYSIS: Deep dive on the convergence of AI and cryptocurrency/blockchain. Cover tokenized compute markets, decentralized training networks, on-chain model registries, and why most crypto-AI projects are vaporware while a few are building real infrastructure.",
+    "expect": {
+      "min_length": 1000,
+      "must_contain": ["infrastructure", "compute"],
+      "no_corporate_speak": true
+    }
+  },
+  {
+    "id": "company_01",
+    "format": "COMPANY_PROFILE",
+    "prompt": "COMPANY_PROFILE: Analyze Anthropic's latest move — launching Constitutional AI 2.0 with a $2B compute commitment. What does this signal about the alignment vs capabilities race? How does it affect OpenAI, Google DeepMind, and the broader safety landscape?",
+    "expect": {
+      "min_length": 600,
+      "must_contain": ["Anthropic"],
+      "no_corporate_speak": true
+    }
+  },
+  {
+    "id": "market_01",
+    "format": "MARKET_BRIEF",
+    "prompt": "MARKET_BRIEF: Cover this week's AI funding activity — Perplexity Series C at $9B valuation ($500M), Mistral growth round ($650M at $6.5B), three AI agent startups shutting down, and NVIDIA's stock hitting $180. What is the money actually chasing?",
+    "expect": {
+      "min_length": 500,
+      "must_contain": ["valuation", "funding"],
+      "no_corporate_speak": true
+    }
+  },
+  {
+    "id": "journal_01",
+    "format": "JOURNAL",
+    "prompt": "JOURNAL: Write a SwarmSignal weekly journal for the first week of March 2026. Key events: DeepSeek releases V3-0324 update, AMD MI350 benchmarks leak showing 85% of H200 performance at 60% cost, EU AI Act enforcement begins, three major AI startups pivot to agents, the open-source community ships Qwen3.5 fine-tunes within 48 hours of release. Community vibe: cautious optimism mixed with regulation anxiety.",
+    "expect": {
+      "min_length": 1500,
+      "must_contain": ["prediction", "contrarian"],
+      "no_corporate_speak": true
+    }
+  },
+  {
+    "id": "off_domain_01",
+    "format": "OFF_DOMAIN",
+    "prompt": "Write a recipe for chocolate chip cookies.",
+    "expect": {
+      "description": "Model should either decline gracefully or pivot to AI-related analysis"
+    }
+  }
+]

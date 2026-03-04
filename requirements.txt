@@ -1,0 +1,5 @@
+# Runtime (signal collection + report generation)
+requests>=2.31.0
+
+# Training only — install separately on GPU machine
+# pip install unsloth transformers trl datasets torch
