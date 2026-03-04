@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Swarm Training Pair",
+  "description": "Schema for a single training pair used across all Swarm verticals.",
+  "type": "object",
+  "required": ["question", "answer", "specialty", "source"],
+  "properties": {
+    "question": {
+      "type": "string",
+      "minLength": 10,
+      "description": "The input prompt or question."
+    },
+    "answer": {
+      "type": "string",
+      "minLength": 50,
+      "description": "The model response or answer."
+    },
+    "specialty": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Domain specialty tag (e.g. broker_senior, cardiology, 737MAX)."
+    },
+    "source": {
+      "type": "string",
+      "enum": ["synthetic", "curated", "trajectory", "human", "augmented"],
+      "description": "Origin of the training pair."
+    },
+    "quality_score": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Quality score from judge or CoVe pipeline."
+    },
+    "format": {
+      "type": "string",
+      "description": "Output format tag (e.g. signal_extraction, gap_detection, chronicle)."
+    },
+    "vertical": {
+      "type": "string",
+      "enum": ["cre", "medical", "aviation", "signal", "core"],
+      "description": "Swarm vertical this pair belongs to."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata (judge verdict, trajectory step, etc.)."
+    }
+  },
+  "additionalProperties": false
+}

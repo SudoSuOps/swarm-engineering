@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Swarm Dataset Manifest",
+  "description": "Schema for dataset manifests used in training and eval pipelines.",
+  "type": "object",
+  "required": ["name", "version", "vertical", "pair_count", "splits"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Dataset name (e.g. swarmsignal_p2, swarmcre_v3)."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^v[0-9]+$",
+      "description": "Dataset version (e.g. v1, v2)."
+    },
+    "vertical": {
+      "type": "string",
+      "enum": ["cre", "medical", "aviation", "signal", "core"],
+      "description": "Primary vertical."
+    },
+    "pair_count": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Total number of pairs across all splits."
+    },
+    "splits": {
+      "type": "object",
+      "required": ["train"],
+      "properties": {
+        "train": {
+          "type": "object",
+          "required": ["path", "count", "sha256"],
+          "properties": {
+            "path": { "type": "string" },
+            "count": { "type": "integer", "minimum": 1 },
+            "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+          }
+        },
+        "eval": {
+          "type": "object",
+          "required": ["path", "count", "sha256"],
+          "properties": {
+            "path": { "type": "string" },
+            "count": { "type": "integer", "minimum": 1 },
+            "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "format_distribution": {
+      "type": "object",
+      "description": "Map of format tag to percentage (e.g. {signal_extraction: 0.30}).",
+      "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "metadata": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}

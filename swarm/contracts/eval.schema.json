@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Swarm Evaluation Result",
+  "description": "Schema for evaluation results from judge or eval pipeline.",
+  "type": "object",
+  "required": ["run_id", "model", "metric", "score"],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "description": "Unique identifier for the evaluation run."
+    },
+    "model": {
+      "type": "string",
+      "description": "Model identifier (e.g. SwarmSignal-9B-P2, SwarmJudge-9B-B0)."
+    },
+    "metric": {
+      "type": "string",
+      "enum": ["accuracy", "completeness", "structure", "relevance", "sft_quality", "json_valid", "domain_accuracy", "loss"],
+      "description": "Evaluation metric name."
+    },
+    "score": {
+      "type": "number",
+      "description": "Metric score value."
+    },
+    "samples": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Number of samples evaluated."
+    },
+    "vertical": {
+      "type": "string",
+      "enum": ["cre", "medical", "aviation", "signal", "core"],
+      "description": "Vertical being evaluated."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of evaluation."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional evaluation context."
+    }
+  },
+  "additionalProperties": false
+}
