@@ -60,6 +60,36 @@
     }
   },
   {
+    "id": "signal_extraction_01",
+    "format": "SIGNAL_EXTRACTION",
+    "prompt": "SIGNAL_EXTRACTION: EVENT: Google DeepMind releases Gemini 2.5 Pro with native tool use and 2M context window, priced at $1.25/M input tokens — 60% cheaper than GPT-4.5. Analyze the deeper signal behind this pricing move and its implications for the inference market.",
+    "expect": {
+      "min_length": 300,
+      "must_contain": ["SIGNAL:", "WHY IT MATTERS:", "DATA OPPORTUNITY:", "CURATION SCORE:"],
+      "no_corporate_speak": true
+    }
+  },
+  {
+    "id": "gap_detection_01",
+    "format": "GAP_DETECTION",
+    "prompt": "GAP_DETECTION: TOPIC: Multi-agent orchestration and tool use in production LLM systems. Identify where current models fail at complex multi-step reasoning with real APIs, what training data is missing, and define a dataset object to fix it.",
+    "expect": {
+      "min_length": 500,
+      "must_contain": ["CURRENT CAPABILITIES:", "KNOWN WEAKNESSES:", "DATA GAP:", "CURATION OBJECT:"],
+      "no_corporate_speak": true
+    }
+  },
+  {
+    "id": "trend_synthesis_01",
+    "format": "TREND_SYNTHESIS",
+    "prompt": "TREND_SYNTHESIS: INPUT SIGNALS: 1) Qwen3.5 MoE models achieving GPT-4 quality at 3B active params, 2) NVIDIA H200 supply finally easing with 40% price drops, 3) Three major AI labs switching from RLHF to Constitutional AI variants, 4) Open-source eval frameworks (lm-eval-harness, HELM) becoming industry standard, 5) Enterprise demand shifting from chatbots to domain-specific agents. Synthesize into top 5 curation objects.",
+    "expect": {
+      "min_length": 800,
+      "must_contain": ["NAME:", "WHY NOW:", "TARGET PAIRS:", "EXPECTED MODEL IMPACT:"],
+      "no_corporate_speak": true
+    }
+  },
+  {
     "id": "off_domain_01",
     "format": "OFF_DOMAIN",
     "prompt": "Write a recipe for chocolate chip cookies.",
