@@ -1,7 +1,10 @@
 """Swarm Agent Base Class
 ========================
 All Swarm agents inherit from BaseAgent.
-Provides lifecycle hooks and contract validation.
+Provides run contract: input validation, dispatch, output validation.
+
+The runtime calls agent.run(inputs). BaseAgent.run() enforces the contract
+then delegates to _execute(), which subclasses implement.
 """
 
 from __future__ import annotations
@@ -15,12 +18,26 @@ from ..core.runtime import RunContext
 class BaseAgent(ABC):
     """Abstract base for all Swarm agents."""
 
+    REQUIRED_INPUTS: list[str] = []
+
     def __init__(self, ctx: RunContext):
         self.ctx = ctx
 
-    @abstractmethod
     def run(self, inputs: dict[str, Any]) -> dict[str, Any]:
-        """Execute the agent's primary task. Must be implemented by subclasses."""
+        """Run contract: validate inputs, call _execute(), validate output.
+
+        This is called by SwarmRuntime.execute(). Do not override.
+        Subclasses implement _execute() instead.
+        """
+        self.validate_inputs(inputs, self.REQUIRED_INPUTS)
+        result = self._execute(inputs)
+        if not isinstance(result, dict):
+            raise TypeError(f"{self.name}._execute() must return dict, got {type(result).__name__}")
+        return result
+
+    @abstractmethod
+    def _execute(self, inputs: dict[str, Any]) -> dict[str, Any]:
+        """Agent implementation. Override this in subclasses."""
         ...
 
     def validate_inputs(self, inputs: dict[str, Any], required: list[str]) -> None:

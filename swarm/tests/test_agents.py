@@ -10,7 +10,7 @@ from swarm.agents.base import BaseAgent
 # --- Fixtures ---
 
 class MockAgent(BaseAgent):
-    def run(self, inputs):
+    def _execute(self, inputs):
         return {"echo": inputs.get("message", "")}
 
 
@@ -48,7 +48,7 @@ def test_get_missing_raises(registry):
 
 
 class AnotherAgent(BaseAgent):
-    def run(self, inputs):
+    def _execute(self, inputs):
         return {}
 
 

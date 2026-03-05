@@ -15,6 +15,5 @@ class SwarmCREAgent(BaseAgent):
 
     REQUIRED_INPUTS = ["query", "asset_type"]
 
-    def run(self, inputs: dict[str, Any]) -> dict[str, Any]:
-        self.validate_inputs(inputs, self.REQUIRED_INPUTS)
+    def _execute(self, inputs: dict[str, Any]) -> dict[str, Any]:
         raise NotImplementedError("SwarmCRE execution not yet implemented")

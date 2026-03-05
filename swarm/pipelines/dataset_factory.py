@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Any
 
 from ..core.runtime import RunContext
+from .schema_validator import is_valid_pair
 
 
 class DatasetFactory:
@@ -32,7 +33,9 @@ class DatasetFactory:
         return pairs
 
     def validate_pair(self, pair: dict[str, Any]) -> bool:
-        """Check a pair meets minimum quality thresholds per pair.schema.json."""
+        """Check a pair meets quality thresholds AND schema contract."""
+        if not is_valid_pair(pair):
+            return False
         instruction = pair.get("instruction", "")
         response = pair.get("response", "")
         length = len(instruction) + len(response)

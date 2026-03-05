@@ -15,6 +15,5 @@ class SwarmMedAgent(BaseAgent):
 
     REQUIRED_INPUTS = ["query", "domain"]
 
-    def run(self, inputs: dict[str, Any]) -> dict[str, Any]:
-        self.validate_inputs(inputs, self.REQUIRED_INPUTS)
+    def _execute(self, inputs: dict[str, Any]) -> dict[str, Any]:
         raise NotImplementedError("SwarmMed execution not yet implemented")

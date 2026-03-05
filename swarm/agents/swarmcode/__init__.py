@@ -15,6 +15,5 @@ class SwarmCodeAgent(BaseAgent):
 
     REQUIRED_INPUTS = ["task", "context"]
 
-    def run(self, inputs: dict[str, Any]) -> dict[str, Any]:
-        self.validate_inputs(inputs, self.REQUIRED_INPUTS)
+    def _execute(self, inputs: dict[str, Any]) -> dict[str, Any]:
         raise NotImplementedError("SwarmCode execution not yet implemented")
