@@ -1,6 +1,13 @@
-"""SwarmJudge Agent
-==================
+"""SwarmJudge Agent — Block-1
+==============================
 Quality gate agent — scores training pairs as PASS/FAIL.
+
+Block-1 implementation: SwarmJudge-9B (Qwen3.5-9B, bf16 LoRA r=64).
+Requires trained model inference backend. Starts after SwarmSignal Phase 2.
+
+Previous implementation (Block-0 code stub) was a string-length validator
+with no content analysis, no reasoning detection, and no model inference.
+It was nuked. This stub awaits the real inference bridge.
 """
 
 from __future__ import annotations
@@ -8,55 +15,25 @@ from __future__ import annotations
 from typing import Any
 
 from ..base import BaseAgent
-from ...pipelines.schema_validator import validate_pair as schema_validate
 
 
 class SwarmJudgeAgent(BaseAgent):
-    """Judge agent that evaluates training pair quality.
+    """Judge agent — Block-1 pending.
 
-    Accepts a training pair, validates it against the pair schema,
-    and returns a structured verdict with score breakdown.
+    Will evaluate training pairs via SwarmJudge-9B model inference
+    with 5-criteria scoring (accuracy, completeness, structure,
+    relevance, sft_quality) and structured PASS/FAIL verdicts.
+
+    Requires:
+      - Trained SwarmJudge-9B merged weights or GGUF
+      - Inference backend (llama-server, vLLM, or Ollama)
+      - enable_thinking=False for Qwen3.5 chat template
     """
 
     REQUIRED_INPUTS = ["instruction", "response", "domain"]
 
-    SCORE_THRESHOLD = 0.7
-
     def _execute(self, inputs: dict[str, Any]) -> dict[str, Any]:
-        instruction = inputs["instruction"]
-        response = inputs["response"]
-        domain = inputs["domain"]
-        score = inputs.get("score", 0.0)
-
-        # Schema validation
-        pair: dict[str, Any] = {
-            "instruction": instruction,
-            "response": response,
-            "score": score,
-            "domain": domain,
-        }
-        if "metadata" in inputs:
-            pair["metadata"] = inputs["metadata"]
-
-        schema_errors = schema_validate(pair)
-
-        # Quality scoring
-        completeness = min(1.0, len(response) / 200)
-        structure = 1.0 if len(instruction) >= 20 and len(response) >= 100 else 0.5
-        relevance = 1.0 if domain.strip() else 0.0
-
-        quality_score = (completeness * 0.4) + (structure * 0.3) + (relevance * 0.3)
-
-        verdict = "PASS" if quality_score >= self.SCORE_THRESHOLD and not schema_errors else "FAIL"
-
-        return {
-            "verdict": verdict,
-            "quality_score": round(quality_score, 4),
-            "schema_errors": schema_errors,
-            "breakdown": {
-                "completeness": round(completeness, 4),
-                "structure": round(structure, 4),
-                "relevance": round(relevance, 4),
-            },
-            "domain": domain,
-        }
+        raise NotImplementedError(
+            "SwarmJudge Block-1 not yet implemented. "
+            "Awaiting SwarmJudge-9B inference bridge after SwarmSignal Phase 2."
+        )
