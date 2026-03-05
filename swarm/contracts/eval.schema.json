@@ -11,7 +11,7 @@
     },
     "model": {
       "type": "string",
-      "description": "Model identifier (e.g. SwarmSignal-9B-P2, SwarmCRE-35B-v1)."
+      "description": "Model identifier (e.g. SwarmSignal-9B-P2, SwarmSignal-2B-v1)."
     },
     "metric": {
       "type": "string",
@@ -29,7 +29,7 @@
     },
     "vertical": {
       "type": "string",
-      "enum": ["cre", "aviation", "signal", "core"],
+      "enum": ["signal", "aviation", "core"],
       "description": "Vertical being evaluated."
     },
     "timestamp": {

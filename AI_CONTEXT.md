@@ -1,4 +1,4 @@
-# AI Context — Swarm Engineering Repository
+# AI Context — SwarmSignal Repository
 
 This file is long-term memory for AI agents working in this repo.
 Read this before writing any code.
@@ -8,7 +8,7 @@ Read this before writing any code.
 ## System Goals
 
 - Build autonomous AI intelligence infrastructure — not a model lab, an AI refinery
-- Four-layer stack: Signal > Curate > Verticals > Ledger
+- SwarmSignal is the foundation layer: AI trends, signal extraction, edge inference
 - Every model earns its slot. No bloat. Signal first.
 - Primary goal is **stability**, not refactoring
 
@@ -27,10 +27,7 @@ All agents must be registered in the `AGENTS` dictionary:
 
 ```python
 # swarm/agents/__init__.py
-AGENTS = {
-    "swarmcode": SwarmCodeAgent,     # Code generation and review
-    "swarmcre": SwarmCREAgent,       # Commercial real estate intelligence
-}
+AGENTS = {}
 ```
 
 No ad-hoc agent creation. New agents require a registry entry.
@@ -55,6 +52,7 @@ Optional: `metadata` (trajectory step, specialty, format, source).
 ## Repository Structure
 
 ```
+src/            SOURCE   — training scripts, cooks, assemblers
 core/           READ-ONLY — runtime, config, registry
 contracts/      READ-ONLY — JSON schema definitions
 tests/          READ-ONLY — validation layer

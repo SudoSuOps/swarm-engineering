@@ -1,11 +1,12 @@
-# SwarmCode Architecture
+# SwarmSignal Architecture
 
-The SwarmCode system is structured as follows:
+The SwarmSignal system is structured as follows:
 
 ```
+src/        – training scripts, data pipelines, signal collection
 core/       – runtime and registry (immutable)
-agents/     – AI agents
-pipelines/  – training and dataset pipelines
+agents/     – AI agents (registry pattern)
+pipelines/  – dataset and eval pipelines
 contracts/  – schema definitions
 tests/      – validation layer
 ```

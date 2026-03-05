@@ -61,9 +61,9 @@ def test_core_modules_present():
 
 def test_agent_modules_present():
     agents = SWARM_ROOT / "agents"
-    for agent in ["swarmcode", "swarmcre"]:
-        init = agents / agent / "__init__.py"
-        assert init.exists(), f"agents/{agent}/__init__.py missing"
+    # No domain agents registered yet — only base.py and __init__.py required
+    assert (agents / "__init__.py").exists(), "agents/__init__.py missing"
+    assert (agents / "base.py").exists(), "agents/base.py missing"
 
 
 def test_pipeline_modules_present():
@@ -74,7 +74,7 @@ def test_pipeline_modules_present():
 
 def test_agents_registry_pattern():
     from swarm.agents import AGENTS
-    expected = {"swarmcode", "swarmcre"}
-    assert set(AGENTS.keys()) == expected, f"AGENTS keys mismatch: {set(AGENTS.keys())} != {expected}"
+    # AGENTS dict exists and is valid (may be empty until agents are built)
+    assert isinstance(AGENTS, dict), "AGENTS must be a dict"
     for name, cls in AGENTS.items():
         assert hasattr(cls, "run"), f"Agent {name} ({cls.__name__}) missing 'run' method"

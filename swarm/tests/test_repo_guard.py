@@ -14,7 +14,7 @@ def test_protected_paths_defined():
 # --- Allowed Paths ---
 
 def test_allowed_agents_path():
-    validate_patch(["agents/swarmcre/__init__.py"])
+    validate_patch(["agents/base.py"])
 
 
 def test_allowed_pipelines_path():

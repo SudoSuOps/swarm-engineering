@@ -24,7 +24,7 @@
     "domain": {
       "type": "string",
       "minLength": 1,
-      "description": "Domain tag (e.g. cre, aviation, signal)."
+      "description": "Domain tag (e.g. signal, aviation)."
     },
     "metadata": {
       "type": "object",

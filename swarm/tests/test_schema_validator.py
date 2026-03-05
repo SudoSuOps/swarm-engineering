@@ -22,10 +22,10 @@ def test_load_missing_schema_raises():
 
 def test_valid_pair_passes():
     pair = {
-        "instruction": "Explain the concept of underwriting in CRE.",
-        "response": "Underwriting in commercial real estate involves " + "x" * 50,
+        "instruction": "Explain the concept of AI signal extraction.",
+        "response": "Signal extraction identifies actionable AI trends from " + "x" * 50,
         "score": 0.85,
-        "domain": "cre",
+        "domain": "signal",
     }
     errors = validate_pair(pair)
     assert errors == []
@@ -34,11 +34,11 @@ def test_valid_pair_passes():
 
 def test_valid_pair_with_metadata():
     pair = {
-        "instruction": "What is a DDI interaction?",
-        "response": "A drug-drug interaction occurs when " + "x" * 50,
+        "instruction": "What is signal extraction in AI?",
+        "response": "Signal extraction identifies key AI developments from " + "x" * 50,
         "score": 0.9,
-        "domain": "cre",
-        "metadata": {"source": "cook_v2", "specialty": "industrial"},
+        "domain": "signal",
+        "metadata": {"source": "cook_v2", "specialty": "ai_trends"},
     }
     assert is_valid_pair(pair)
 
@@ -46,19 +46,19 @@ def test_valid_pair_with_metadata():
 # --- Missing Required Fields ---
 
 def test_missing_instruction():
-    pair = {"response": "x" * 60, "score": 0.8, "domain": "cre"}
+    pair = {"response": "x" * 60, "score": 0.8, "domain": "signal"}
     errors = validate_pair(pair)
     assert any("instruction" in e for e in errors)
 
 
 def test_missing_response():
-    pair = {"instruction": "x" * 20, "score": 0.8, "domain": "cre"}
+    pair = {"instruction": "x" * 20, "score": 0.8, "domain": "signal"}
     errors = validate_pair(pair)
     assert any("response" in e for e in errors)
 
 
 def test_missing_score():
-    pair = {"instruction": "x" * 20, "response": "x" * 60, "domain": "cre"}
+    pair = {"instruction": "x" * 20, "response": "x" * 60, "domain": "signal"}
     errors = validate_pair(pair)
     assert any("score" in e for e in errors)
 
@@ -72,7 +72,7 @@ def test_missing_domain():
 # --- Type Errors ---
 
 def test_score_wrong_type():
-    pair = {"instruction": "x" * 20, "response": "x" * 60, "score": "high", "domain": "cre"}
+    pair = {"instruction": "x" * 20, "response": "x" * 60, "score": "high", "domain": "signal"}
     errors = validate_pair(pair)
     assert any("expected number" in e for e in errors)
 
@@ -86,25 +86,25 @@ def test_domain_wrong_type():
 # --- Constraint Violations ---
 
 def test_instruction_too_short():
-    pair = {"instruction": "Hi", "response": "x" * 60, "score": 0.8, "domain": "cre"}
+    pair = {"instruction": "Hi", "response": "x" * 60, "score": 0.8, "domain": "signal"}
     errors = validate_pair(pair)
     assert any("minLength" in e for e in errors)
 
 
 def test_response_too_short():
-    pair = {"instruction": "x" * 20, "response": "short", "score": 0.8, "domain": "cre"}
+    pair = {"instruction": "x" * 20, "response": "short", "score": 0.8, "domain": "signal"}
     errors = validate_pair(pair)
     assert any("minLength" in e for e in errors)
 
 
 def test_score_below_minimum():
-    pair = {"instruction": "x" * 20, "response": "x" * 60, "score": -0.5, "domain": "cre"}
+    pair = {"instruction": "x" * 20, "response": "x" * 60, "score": -0.5, "domain": "signal"}
     errors = validate_pair(pair)
     assert any("minimum" in e for e in errors)
 
 
 def test_score_above_maximum():
-    pair = {"instruction": "x" * 20, "response": "x" * 60, "score": 1.5, "domain": "cre"}
+    pair = {"instruction": "x" * 20, "response": "x" * 60, "score": 1.5, "domain": "signal"}
     errors = validate_pair(pair)
     assert any("maximum" in e for e in errors)
 
@@ -116,7 +116,7 @@ def test_unexpected_field_rejected():
         "instruction": "x" * 20,
         "response": "x" * 60,
         "score": 0.8,
-        "domain": "cre",
+        "domain": "signal",
         "bogus_field": "should fail",
     }
     errors = validate_pair(pair)

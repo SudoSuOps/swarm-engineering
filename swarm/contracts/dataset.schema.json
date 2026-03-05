@@ -7,7 +7,7 @@
   "properties": {
     "name": {
       "type": "string",
-      "description": "Dataset name (e.g. swarmsignal_p2, swarmcre_v3)."
+      "description": "Dataset name (e.g. swarmsignal_p2, swarmsignal_v3)."
     },
     "version": {
       "type": "string",
@@ -16,7 +16,7 @@
     },
     "vertical": {
       "type": "string",
-      "enum": ["cre", "aviation", "signal", "core"],
+      "enum": ["signal", "aviation", "core"],
       "description": "Primary vertical."
     },
     "pair_count": {
